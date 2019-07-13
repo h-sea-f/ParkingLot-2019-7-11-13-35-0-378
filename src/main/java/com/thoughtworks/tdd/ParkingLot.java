@@ -1,7 +1,5 @@
 package com.thoughtworks.tdd;
 
-import sun.security.krb5.internal.Ticket;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,9 +9,14 @@ public class ParkingLot {
     private Map<ParkingTicket, Car> cars = new HashMap<ParkingTicket, Car>();
 
     public ParkingTicket parkCar(Car car) {
-        ParkingTicket ticket = new ParkingTicket(car);
-        this.cars.put(ticket, car);
-        return ticket;
+        if (this.cars.size() < this.capacity) {
+            ParkingTicket ticket = new ParkingTicket(car);
+            this.cars.put(ticket, car);
+            return ticket;
+        } else {
+            return null;
+        }
+
     }
 
     public Car takeCar(ParkingTicket ticket) {

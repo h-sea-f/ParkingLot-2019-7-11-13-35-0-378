@@ -42,4 +42,16 @@ public class ParkingLotTest {
         Assertions.assertEquals(parkingLot.takeCar(ticket1), null);
     }
 
+    @Test
+    @DisplayName("shoule return null when parkCar park full give a car")
+    public void should_return_null_when_parkCar_park_full_give_a_car() {
+        //given
+        ParkingLot parkingLot=new ParkingLot(0);
+        Car car=new Car(123);
+        ParkingTicket ticket=parkingLot.parkCar(car);
+        //when
+        //then
+        Assertions.assertEquals(ticket,null);
+    }
+
 }

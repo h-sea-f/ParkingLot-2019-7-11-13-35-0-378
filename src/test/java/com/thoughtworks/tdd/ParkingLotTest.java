@@ -100,4 +100,17 @@ public class ParkingLotTest {
         //then
         Assertions.assertEquals(parkingBoy.parkingBoyTakeCar(parkingTicket,parkingLot).getCarId(), car.getCarId());
     }
+
+    @Test
+    @DisplayName("shoule return null when parkingBoyTakeCar give erro ticket and parkingLot")
+    public void should_return_null_when_parkingBoyTakeCar_give_error_ticket_and_parkingLot() {
+        //given
+        ParkingLot parkingLot = new ParkingLot();
+        Car car = new Car(123);
+        ParkingBoy parkingBoy=new ParkingBoy();
+        ParkingTicket parkingTicket=new ParkingTicket();
+        //when
+        //then
+        Assertions.assertEquals(parkingBoy.parkingBoyTakeCar(parkingTicket,parkingLot), null);
+    }
 }

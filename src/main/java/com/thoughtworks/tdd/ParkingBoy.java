@@ -15,4 +15,8 @@ public class ParkingBoy {
     public Car parkingBoyTakeCar(ParkingTicket parkingTicket,ParkingLot parkingLot){
         return parkingLot.takeCar(parkingTicket);
     }
+
+    public Car parkingBoyTakeCar(ParkingLot parkingLot){
+        return null;
+    }
 }

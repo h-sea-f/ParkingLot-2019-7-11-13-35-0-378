@@ -10,15 +10,21 @@ public class ParkingLot {
     private final int capacity;
     private Map<ParkingTicket, Car> cars = new HashMap<ParkingTicket, Car>();
 
-    public ParkingTicket parkCar(Car car){
-        ParkingTicket ticket=new ParkingTicket(car);
-        this.cars.put(ticket,car);
+    public ParkingTicket parkCar(Car car) {
+        ParkingTicket ticket = new ParkingTicket(car);
+        this.cars.put(ticket, car);
         return ticket;
     }
 
-    public Car takeCar(ParkingTicket ticket){
-        return ticket.getCar();
+    public Car takeCar(ParkingTicket ticket) {
+        if (cars.containsKey(ticket)) {
+            return ticket.getCar();
+        } else {
+            return null;
+        }
+
     }
+
     public ParkingLot(int capacity) {
         this.capacity = capacity;
     }

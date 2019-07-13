@@ -39,7 +39,7 @@ public class ParkingLotTest {
         ParkingTicket ticket1 = new ParkingTicket();
         //when
         //then
-        Assertions.assertEquals(parkingLot.takeCar(ticket1).getCarId(), null);
+        Assertions.assertEquals(parkingLot.takeCar(ticket1), null);
     }
 
 }

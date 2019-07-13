@@ -14,6 +14,7 @@ public class ParkingLot {
             this.cars.put(ticket, car);
             return ticket;
         } else {
+            System.out.println("Not enough position.");
             return null;
         }
 
@@ -23,9 +24,14 @@ public class ParkingLot {
         if (cars.containsKey(ticket)) {
             return ticket.getCar();
         } else {
+            System.out.println("Unrecognized parking ticket.");
             return null;
         }
+    }
 
+    public Car takeCar(){
+        System.out.print("Please provide your parking ticket.\n");
+        return null;
     }
 
     public ParkingLot(int capacity) {

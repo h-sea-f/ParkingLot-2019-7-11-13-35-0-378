@@ -17,6 +17,6 @@ public class ParkingBoy {
     }
 
     public Car parkingBoyTakeCar(ParkingLot parkingLot){
-        return null;
+        return parkingLot.takeCar();
     }
 }

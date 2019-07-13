@@ -4,8 +4,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.hamcrest.CoreMatchers.containsString;
 
 public class ParkingLotTest {
     @Test
@@ -124,5 +128,20 @@ public class ParkingLotTest {
         //when
         //then
         Assertions.assertEquals(parkingBoy.parkingBoyTakeCar(parkingLot), null);
+    }
+
+    @Test
+    @DisplayName("shoule have error message  when parkingBoyTakeCar give  parkingLot")
+    public void should_have_error_message_when_parkingBoyTakeCar_give_parkingLot() {
+        //given
+        final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        ParkingLot parkingLot = new ParkingLot();
+        Car car = new Car(123);
+        ParkingBoy parkingBoy=new ParkingBoy();
+        //when
+        parkingBoy.parkingBoyTakeCar(parkingLot);
+        //then
+        Assertions.assertEquals(outContent.toString(), "Please provide your parking ticket.\n");
     }
 }

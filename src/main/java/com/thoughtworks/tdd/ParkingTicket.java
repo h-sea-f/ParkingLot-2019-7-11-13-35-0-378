@@ -7,6 +7,8 @@ public class ParkingTicket {
         this.car = car;
     }
 
+    public ParkingTicket(){}
+
     public Car getCar() {
         return car;
     }

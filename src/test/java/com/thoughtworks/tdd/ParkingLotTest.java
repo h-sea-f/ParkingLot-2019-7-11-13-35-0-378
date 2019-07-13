@@ -87,4 +87,17 @@ public class ParkingLotTest {
         Assertions.assertEquals(ticketList.get(0).getCar(),car);
         Assertions.assertEquals(ticketList.get(1).getCar(),car1);
     }
+
+    @Test
+    @DisplayName("shoule return a car when parkingBoyTakeCar give right ticket and parkingLot")
+    public void should_return_a_car_when_parkingBoyTakeCar_give_right_ticket_and_parkingLot() {
+        //given
+        ParkingLot parkingLot = new ParkingLot();
+        Car car = new Car(123);
+        ParkingBoy parkingBoy=new ParkingBoy();
+        ParkingTicket parkingTicket=parkingBoy.parkingBoyParkCar(car,parkingLot);
+        //when
+        //then
+        Assertions.assertEquals(parkingBoy.parkingBoyTakeCar(parkingTicket,parkingLot).getCarId(), car.getCarId());
+    }
 }

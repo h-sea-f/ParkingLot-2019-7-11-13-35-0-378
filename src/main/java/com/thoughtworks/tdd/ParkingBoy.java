@@ -11,4 +11,8 @@ public class ParkingBoy {
     public List<ParkingTicket> parkingBoyParkCars(List<Car> cars,ParkingLot parkingLot){
         return cars.stream().map(parkingLot::parkCar).collect(Collectors.toList());
     }
+
+    public Car parkingBoyTakeCar(ParkingTicket parkingTicket,ParkingLot parkingLot){
+        return parkingLot.takeCar(parkingTicket);
+    }
 }

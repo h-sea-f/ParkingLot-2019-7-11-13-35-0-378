@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ParkingLotTest {
     @Test
     @DisplayName("shoule return a ticket when park a car")
@@ -65,5 +68,23 @@ public class ParkingLotTest {
         ParkingTicket ticket=parkingBoy.parkingBoyParkCar(car,parkingLot);
         //then
         Assertions.assertEquals(ticket.getCar(),car);
+    }
+
+    @Test
+    @DisplayName("shoule return ticketList when parkingBoyParkCars p give a carList and a parkingLot")
+    public void should_return_ticketList_when_parkingBoyParkCars_give_a_carList_and_a_parkingLot() {
+        //given
+        ParkingLot parkingLot=new ParkingLot(10);
+        Car car=new Car(123);
+        Car car1=new Car(222);
+        List<Car> carList=new ArrayList<>();
+        carList.add(car);
+        carList.add(car1);
+        ParkingBoy parkingBoy=new ParkingBoy();
+        //when
+        List<ParkingTicket> ticketList=parkingBoy.parkingBoyParkCars(carList,parkingLot);
+        //then
+        Assertions.assertEquals(ticketList.get(0).getCar(),car);
+        Assertions.assertEquals(ticketList.get(1).getCar(),car1);
     }
 }

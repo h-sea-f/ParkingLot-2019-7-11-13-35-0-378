@@ -23,10 +23,10 @@ public class ParkingLotTest {
         //given
         ParkingLot parkingLot = new ParkingLot();
         Car car = new Car(123);
-        ParkingTicket ticket = parkingLot.takeCar(car);
+        ParkingTicket ticket = parkingLot.parkCar(car);
         //when
         //then
-        Assertions.assertEquals(ticket.getCar().getCarId(), car.getCarId());
+        Assertions.assertEquals(parkingLot.takeCar(ticket).getCarId(), car.getCarId());
     }
 
 

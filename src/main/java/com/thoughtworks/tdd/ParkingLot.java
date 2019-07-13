@@ -15,6 +15,10 @@ public class ParkingLot {
         this.cars.put(ticket,car);
         return ticket;
     }
+
+    public Car takeCar(ParkingTicket ticket){
+        return ticket.getCar();
+    }
     public ParkingLot(int capacity) {
         this.capacity = capacity;
     }

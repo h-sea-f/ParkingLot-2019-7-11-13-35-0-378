@@ -168,15 +168,15 @@ public class ParkingLotTest {
         final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         //given
-        SillyParkingBoy sillyParkingBoy=new SillyParkingBoy();
-        Car car=new Car(123);
-        ParkingLot parkingLot1=new ParkingLot(0);
-        ParkingLot parkingLot2=new ParkingLot(0);
-        List<ParkingLot> parkingLotList=new ArrayList<>();
+        SillyParkingBoy sillyParkingBoy = new SillyParkingBoy();
+        Car car = new Car(123);
+        ParkingLot parkingLot1 = new ParkingLot(0);
+        ParkingLot parkingLot2 = new ParkingLot(0);
+        List<ParkingLot> parkingLotList = new ArrayList<>();
         parkingLotList.add(parkingLot1);
         parkingLotList.add(parkingLot2);
         //when
-        ParkingTicket parkingTicket=sillyParkingBoy.parkingBoyParkCar(car,parkingLotList);
+        ParkingTicket parkingTicket = sillyParkingBoy.parkingBoyParkCar(car, parkingLotList);
         //then
         Assertions.assertEquals(outContent.toString(), "Not enough position.\n");
     }
@@ -185,7 +185,7 @@ public class ParkingLotTest {
     @DisplayName("shoule return ticket  when SmartParkingBoy parkingBoyParkCar give car and parkingLotList")
     public void should_return_ticket_when_SmartParkingBoy_parkingBoyTakeCar_give_car_and_parkingLotList() {
         //given
-        SmartParkingBoy smartParkingBoy=new SmartParkingBoy();
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy();
         Car car = new Car(123);
         ParkingLot parkingLot1 = new ParkingLot(1);
         ParkingLot parkingLot2 = new ParkingLot(1);
@@ -193,7 +193,7 @@ public class ParkingLotTest {
         parkingLotList.add(parkingLot1);
         parkingLotList.add(parkingLot2);
         //when
-        ParkingTicket parkingTicket = smartParkingBoy.parkingBoyParkCar(car,parkingLotList);
+        ParkingTicket parkingTicket = smartParkingBoy.parkingBoyParkCar(car, parkingLotList);
         //then
         Assertions.assertEquals(parkingTicket.getCar(), car);
     }
@@ -204,15 +204,15 @@ public class ParkingLotTest {
         final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         //given
-        SmartParkingBoy smartParkingBoy=new SmartParkingBoy();
-        Car car=new Car(123);
-        ParkingLot parkingLot1=new ParkingLot(0);
-        ParkingLot parkingLot2=new ParkingLot(0);
-        List<ParkingLot> parkingLotList=new ArrayList<>();
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy();
+        Car car = new Car(123);
+        ParkingLot parkingLot1 = new ParkingLot(0);
+        ParkingLot parkingLot2 = new ParkingLot(0);
+        List<ParkingLot> parkingLotList = new ArrayList<>();
         parkingLotList.add(parkingLot1);
         parkingLotList.add(parkingLot2);
         //when
-        ParkingTicket parkingTicket=smartParkingBoy.parkingBoyParkCar(car,parkingLotList);
+        ParkingTicket parkingTicket = smartParkingBoy.parkingBoyParkCar(car, parkingLotList);
         //then
         Assertions.assertEquals(outContent.toString(), "Not enough position.\n");
     }
@@ -221,14 +221,14 @@ public class ParkingLotTest {
     @DisplayName("shoule return ticket  when LotServiceManager select parkingBoy park car")
     public void should_return_ticket_when_LotServiceManager_select_parkingBoy_park_car() {
         //given
-        SmartParkingBoy smartParkingBoy=new SmartParkingBoy();
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy();
         Car car = new Car(123);
         ParkingLot parkingLot1 = new ParkingLot(1);
         ParkingLot parkingLot2 = new ParkingLot(1);
         List<ParkingLot> parkingLotList = new ArrayList<>();
         parkingLotList.add(parkingLot1);
         parkingLotList.add(parkingLot2);
-        LotServiceManager lotServiceManager=new LotServiceManager(parkingLotList);
+        LotServiceManager lotServiceManager = new LotServiceManager(parkingLotList);
         lotServiceManager.addParkingBoy(smartParkingBoy);
         //when
         ParkingTicket parkingTicket = lotServiceManager.targetParkingBoyParkCar(car);
@@ -242,14 +242,14 @@ public class ParkingLotTest {
         final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         //given
-        SmartParkingBoy smartParkingBoy=new SmartParkingBoy();
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy();
         Car car = new Car(123);
         ParkingLot parkingLot1 = new ParkingLot(1);
         ParkingLot parkingLot2 = new ParkingLot(1);
         List<ParkingLot> parkingLotList = new ArrayList<>();
         parkingLotList.add(parkingLot1);
         parkingLotList.add(parkingLot2);
-        LotServiceManager lotServiceManager=new LotServiceManager(parkingLotList);
+        LotServiceManager lotServiceManager = new LotServiceManager(parkingLotList);
         //when
         ParkingTicket parkingTicket = lotServiceManager.targetParkingBoyParkCar(car);
         //then

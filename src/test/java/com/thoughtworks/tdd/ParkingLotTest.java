@@ -198,4 +198,22 @@ public class ParkingLotTest {
         Assertions.assertEquals(parkingTicket.getCar(), car);
     }
 
+    @Test
+    @DisplayName("shoule return error message  when SmartParkingBoy parkingBoyParkCar give car and parkingLotList all full")
+    public void should_return_error_message_when_SmartParkingBoy_parkingBoyTakeCar_give_car_and_parkingLotList_all_full() {
+        final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        //given
+        SmartParkingBoy smartParkingBoy=new SmartParkingBoy();
+        Car car=new Car(123);
+        ParkingLot parkingLot1=new ParkingLot(0);
+        ParkingLot parkingLot2=new ParkingLot(0);
+        List<ParkingLot> parkingLotList=new ArrayList<>();
+        parkingLotList.add(parkingLot1);
+        parkingLotList.add(parkingLot2);
+        //when
+        ParkingTicket parkingTicket=smartParkingBoy.prarkingBoyParkCar(car,parkingLotList);
+        //then
+        Assertions.assertEquals(outContent.toString(), "Not enough position.\n");
+    }
 }

@@ -8,6 +8,10 @@ public class ParkingBoy {
         return parkingLot.parkCar(car);
     }
 
+    public ParkingTicket parkingBoyParkCar(Car car, List<ParkingLot> parkingLotList) {
+        return null;
+    }
+
     public List<ParkingTicket> parkingBoyParkCars(List<Car> cars, ParkingLot parkingLot) {
         return cars.stream().map(parkingLot::parkCar).collect(Collectors.toList());
     }

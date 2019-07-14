@@ -2,8 +2,9 @@ package com.thoughtworks.tdd;
 
 import java.util.List;
 
-public class SuperSmartParkingBoy {
-    public ParkingTicket paringBoyParkCar(Car car, List<ParkingLot> parkingLotList) {
+public class SuperSmartParkingBoy extends ParkingBoy {
+    @Override
+    public ParkingTicket parkingBoyParkCar(Car car, List<ParkingLot> parkingLotList) {
         ParkingLot lowestUtilizationParkingLot = parkingLotList.get(0);
         for (ParkingLot parkingLot : parkingLotList) {
             boolean isLowestUtilizationParkingLot = (parkingLot.getCars().size() / parkingLot.getCapacity()) < (lowestUtilizationParkingLot.getCars().size() / lowestUtilizationParkingLot.getCapacity());

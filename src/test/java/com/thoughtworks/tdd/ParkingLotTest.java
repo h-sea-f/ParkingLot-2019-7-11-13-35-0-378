@@ -193,7 +193,7 @@ public class ParkingLotTest {
         parkingLotList.add(parkingLot1);
         parkingLotList.add(parkingLot2);
         //when
-        ParkingTicket parkingTicket = smartParkingBoy.prarkingBoyParkCar(car,parkingLotList);
+        ParkingTicket parkingTicket = smartParkingBoy.parkingBoyParkCar(car,parkingLotList);
         //then
         Assertions.assertEquals(parkingTicket.getCar(), car);
     }
@@ -212,8 +212,27 @@ public class ParkingLotTest {
         parkingLotList.add(parkingLot1);
         parkingLotList.add(parkingLot2);
         //when
-        ParkingTicket parkingTicket=smartParkingBoy.prarkingBoyParkCar(car,parkingLotList);
+        ParkingTicket parkingTicket=smartParkingBoy.parkingBoyParkCar(car,parkingLotList);
         //then
         Assertions.assertEquals(outContent.toString(), "Not enough position.\n");
+    }
+
+    @Test
+    @DisplayName("shoule return ticket  when LotServiceManager select parkingBoy park car")
+    public void should_return_ticket_when_LotServiceManager_select_parkingBoy_park_car() {
+        //given
+        SmartParkingBoy smartParkingBoy=new SmartParkingBoy();
+        Car car = new Car(123);
+        ParkingLot parkingLot1 = new ParkingLot(1);
+        ParkingLot parkingLot2 = new ParkingLot(1);
+        List<ParkingLot> parkingLotList = new ArrayList<>();
+        parkingLotList.add(parkingLot1);
+        parkingLotList.add(parkingLot2);
+        LotServiceManager lotServiceManager=new LotServiceManager(parkingLotList);
+        lotServiceManager.addParkingBoy(smartParkingBoy);
+        //when
+        ParkingTicket parkingTicket = lotServiceManager.targetParkingBoyParkCar(car);
+        //then
+        Assertions.assertEquals(parkingTicket.getCar(), car);
     }
 }

@@ -253,6 +253,27 @@ public class ParkingLotTest {
         //when
         ParkingTicket parkingTicket = lotServiceManager.targetParkingBoyParkCar(car);
         //then
-        Assertions.assertEquals(outContent.toString(), "Don't hava any parking boy.\n");
+        Assertions.assertEquals(outContent.toString(), "Don't have any parking boy.\n");
     }
+
+    @Test
+    @DisplayName("shoule return car  when LotServiceManager select parkingBoy take car")
+    public void shoule_return_car_when_LotServiceManager_select_parkingBoy_take_car() {
+        //given
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy();
+        Car car = new Car(123);
+        ParkingLot parkingLot1 = new ParkingLot(1);
+        ParkingLot parkingLot2 = new ParkingLot(1);
+        List<ParkingLot> parkingLotList = new ArrayList<>();
+        parkingLotList.add(parkingLot1);
+        parkingLotList.add(parkingLot2);
+        LotServiceManager lotServiceManager = new LotServiceManager(parkingLotList);
+        lotServiceManager.addParkingBoy(smartParkingBoy);
+        ParkingTicket parkingTicket = lotServiceManager.targetParkingBoyParkCar(car);
+        //when
+        //then
+        Assertions.assertEquals(lotServiceManager.targetParkingBoyTakeCar(parkingTicket), car);
+    }
+
+
 }

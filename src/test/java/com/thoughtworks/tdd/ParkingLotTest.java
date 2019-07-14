@@ -235,4 +235,24 @@ public class ParkingLotTest {
         //then
         Assertions.assertEquals(parkingTicket.getCar(), car);
     }
+
+    @Test
+    @DisplayName("shoule return error message  when LotServiceManager select parkingBoy park car and parkingBoyList is empty")
+    public void shoule_return_error_message_when_LotServiceManager_select_parkingBoy_park_car_and_parkingBoyList_is_empty() {
+        final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        //given
+        SmartParkingBoy smartParkingBoy=new SmartParkingBoy();
+        Car car = new Car(123);
+        ParkingLot parkingLot1 = new ParkingLot(1);
+        ParkingLot parkingLot2 = new ParkingLot(1);
+        List<ParkingLot> parkingLotList = new ArrayList<>();
+        parkingLotList.add(parkingLot1);
+        parkingLotList.add(parkingLot2);
+        LotServiceManager lotServiceManager=new LotServiceManager(parkingLotList);
+        //when
+        ParkingTicket parkingTicket = lotServiceManager.targetParkingBoyParkCar(car);
+        //then
+        Assertions.assertEquals(outContent.toString(), "Don't hava any parking boy.\n");
+    }
 }

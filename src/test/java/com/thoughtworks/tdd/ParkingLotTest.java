@@ -53,43 +53,43 @@ public class ParkingLotTest {
     @DisplayName("shoule return null when parkCar park full give a car")
     public void should_return_null_when_parkCar_park_full_give_a_car() {
         //given
-        ParkingLot parkingLot=new ParkingLot(0);
-        Car car=new Car(123);
-        ParkingTicket ticket=parkingLot.parkCar(car);
+        ParkingLot parkingLot = new ParkingLot(0);
+        Car car = new Car(123);
+        ParkingTicket ticket = parkingLot.parkCar(car);
         //when
         //then
-        Assertions.assertEquals(ticket,null);
+        Assertions.assertEquals(ticket, null);
     }
 
     @Test
     @DisplayName("shoule return ticket when parkingBoyParkCar p give a car and a parkingLot")
     public void should_return_ticket_when_parkingBoyParkCar_give_a_car_and_a_parkingLot() {
         //given
-        ParkingLot parkingLot=new ParkingLot(10);
-        Car car=new Car(123);
-        ParkingBoy parkingBoy=new ParkingBoy();
+        ParkingLot parkingLot = new ParkingLot(10);
+        Car car = new Car(123);
+        ParkingBoy parkingBoy = new ParkingBoy();
         //when
-        ParkingTicket ticket=parkingBoy.parkingBoyParkCar(car,parkingLot);
+        ParkingTicket ticket = parkingBoy.parkingBoyParkCar(car, parkingLot);
         //then
-        Assertions.assertEquals(ticket.getCar(),car);
+        Assertions.assertEquals(ticket.getCar(), car);
     }
 
     @Test
     @DisplayName("shoule return ticketList when parkingBoyParkCars p give a carList and a parkingLot")
     public void should_return_ticketList_when_parkingBoyParkCars_give_a_carList_and_a_parkingLot() {
         //given
-        ParkingLot parkingLot=new ParkingLot(10);
-        Car car=new Car(123);
-        Car car1=new Car(222);
-        List<Car> carList=new ArrayList<>();
+        ParkingLot parkingLot = new ParkingLot(10);
+        Car car = new Car(123);
+        Car car1 = new Car(222);
+        List<Car> carList = new ArrayList<>();
         carList.add(car);
         carList.add(car1);
-        ParkingBoy parkingBoy=new ParkingBoy();
+        ParkingBoy parkingBoy = new ParkingBoy();
         //when
-        List<ParkingTicket> ticketList=parkingBoy.parkingBoyParkCars(carList,parkingLot);
+        List<ParkingTicket> ticketList = parkingBoy.parkingBoyParkCars(carList, parkingLot);
         //then
-        Assertions.assertEquals(ticketList.get(0).getCar(),car);
-        Assertions.assertEquals(ticketList.get(1).getCar(),car1);
+        Assertions.assertEquals(ticketList.get(0).getCar(), car);
+        Assertions.assertEquals(ticketList.get(1).getCar(), car1);
     }
 
     @Test
@@ -98,11 +98,11 @@ public class ParkingLotTest {
         //given
         ParkingLot parkingLot = new ParkingLot();
         Car car = new Car(123);
-        ParkingBoy parkingBoy=new ParkingBoy();
-        ParkingTicket parkingTicket=parkingBoy.parkingBoyParkCar(car,parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy();
+        ParkingTicket parkingTicket = parkingBoy.parkingBoyParkCar(car, parkingLot);
         //when
         //then
-        Assertions.assertEquals(parkingBoy.parkingBoyTakeCar(parkingTicket,parkingLot).getCarId(), car.getCarId());
+        Assertions.assertEquals(parkingBoy.parkingBoyTakeCar(parkingTicket, parkingLot).getCarId(), car.getCarId());
     }
 
     @Test
@@ -111,11 +111,11 @@ public class ParkingLotTest {
         //given
         ParkingLot parkingLot = new ParkingLot();
         Car car = new Car(123);
-        ParkingBoy parkingBoy=new ParkingBoy();
-        ParkingTicket parkingTicket=new ParkingTicket();
+        ParkingBoy parkingBoy = new ParkingBoy();
+        ParkingTicket parkingTicket = new ParkingTicket();
         //when
         //then
-        Assertions.assertEquals(parkingBoy.parkingBoyTakeCar(parkingTicket,parkingLot), null);
+        Assertions.assertEquals(parkingBoy.parkingBoyTakeCar(parkingTicket, parkingLot), null);
     }
 
     @Test
@@ -124,7 +124,7 @@ public class ParkingLotTest {
         //given
         ParkingLot parkingLot = new ParkingLot();
         Car car = new Car(123);
-        ParkingBoy parkingBoy=new ParkingBoy();
+        ParkingBoy parkingBoy = new ParkingBoy();
         //when
         //then
         Assertions.assertEquals(parkingBoy.parkingBoyTakeCar(parkingLot), null);
@@ -138,7 +138,7 @@ public class ParkingLotTest {
         System.setOut(new PrintStream(outContent));
         ParkingLot parkingLot = new ParkingLot();
         Car car = new Car(123);
-        ParkingBoy parkingBoy=new ParkingBoy();
+        ParkingBoy parkingBoy = new ParkingBoy();
         //when
         parkingBoy.parkingBoyTakeCar(parkingLot);
         //then
@@ -149,16 +149,36 @@ public class ParkingLotTest {
     @DisplayName("shoule return ticket  when SillyParkingBoy parkingBoyParkCar give car and parkingLotList")
     public void should_return_ticket_when_SillyParkingBoy_parkingBoyTakeCar_give_car_and_parkingLotList() {
         //given
+        SillyParkingBoy sillyParkingBoy = new SillyParkingBoy();
+        Car car = new Car(123);
+        ParkingLot parkingLot1 = new ParkingLot(1);
+        ParkingLot parkingLot2 = new ParkingLot(1);
+        List<ParkingLot> parkingLotList = new ArrayList<>();
+        parkingLotList.add(parkingLot1);
+        parkingLotList.add(parkingLot2);
+        //when
+        ParkingTicket parkingTicket = sillyParkingBoy.parkingBoyParkCar(car, parkingLotList);
+        //then
+        Assertions.assertEquals(parkingTicket.getCar(), car);
+    }
+
+    @Test
+    @DisplayName("shoule return error message  when SillyParkingBoy parkingBoyParkCar give car and parkingLotList all full")
+    public void should_return_error_message_when_SillyParkingBoy_parkingBoyTakeCar_give_car_and_parkingLotList_all_full() {
+        final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        //given
         SillyParkingBoy sillyParkingBoy=new SillyParkingBoy();
         Car car=new Car(123);
-        ParkingLot parkingLot1=new ParkingLot(1);
-        ParkingLot parkingLot2=new ParkingLot(1);
+        ParkingLot parkingLot1=new ParkingLot(0);
+        ParkingLot parkingLot2=new ParkingLot(0);
         List<ParkingLot> parkingLotList=new ArrayList<>();
         parkingLotList.add(parkingLot1);
         parkingLotList.add(parkingLot2);
         //when
         ParkingTicket parkingTicket=sillyParkingBoy.parkingBoyParkCar(car,parkingLotList);
         //then
-        Assertions.assertEquals(parkingTicket.getCar(),car);
+        Assertions.assertEquals(outContent.toString(), "Not enough position.\n");
     }
+
 }

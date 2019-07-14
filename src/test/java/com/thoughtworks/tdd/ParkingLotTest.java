@@ -181,4 +181,21 @@ public class ParkingLotTest {
         Assertions.assertEquals(outContent.toString(), "Not enough position.\n");
     }
 
+    @Test
+    @DisplayName("shoule return ticket  when SmartParkingBoy parkingBoyParkCar give car and parkingLotList")
+    public void should_return_ticket_when_SmartParkingBoy_parkingBoyTakeCar_give_car_and_parkingLotList() {
+        //given
+        SmartParkingBoy smartParkingBoy=new SmartParkingBoy();
+        Car car = new Car(123);
+        ParkingLot parkingLot1 = new ParkingLot(1);
+        ParkingLot parkingLot2 = new ParkingLot(1);
+        List<ParkingLot> parkingLotList = new ArrayList<>();
+        parkingLotList.add(parkingLot1);
+        parkingLotList.add(parkingLot2);
+        //when
+        ParkingTicket parkingTicket = smartParkingBoy.prarkingBoyParkCar(car,parkingLotList);
+        //then
+        Assertions.assertEquals(parkingTicket.getCar(), car);
+    }
+
 }

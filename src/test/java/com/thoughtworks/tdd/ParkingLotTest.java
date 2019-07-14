@@ -274,6 +274,4 @@ public class ParkingLotTest {
         //then
         Assertions.assertEquals(lotServiceManager.targetParkingBoyTakeCar(parkingTicket), car);
     }
-
-
 }

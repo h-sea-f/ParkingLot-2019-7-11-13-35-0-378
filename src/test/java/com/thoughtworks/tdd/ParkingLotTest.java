@@ -144,4 +144,21 @@ public class ParkingLotTest {
         //then
         Assertions.assertEquals(outContent.toString(), "Please provide your parking ticket.\n");
     }
+
+    @Test
+    @DisplayName("shoule return ticket  when SillyParkingBoy parkingBoyParkCar give car and parkingLotList")
+    public void should_return_ticket_when_SillyParkingBoy_parkingBoyTakeCar_give_car_and_parkingLotList() {
+        //given
+        SillyParkingBoy sillyParkingBoy=new SillyParkingBoy();
+        Car car=new Car(123);
+        ParkingLot parkingLot1=new ParkingLot(1);
+        ParkingLot parkingLot2=new ParkingLot(1);
+        List<ParkingLot> parkingLotList=new ArrayList<>();
+        parkingLotList.add(parkingLot1);
+        parkingLotList.add(parkingLot2);
+        //when
+        ParkingTicket parkingTicket=sillyParkingBoy.parkingBoyParkCar(car,parkingLotList);
+        //then
+        Assertions.assertEquals(parkingTicket.getCar(),car);
+    }
 }

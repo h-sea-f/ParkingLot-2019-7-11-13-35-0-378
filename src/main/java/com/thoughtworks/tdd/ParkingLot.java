@@ -3,7 +3,7 @@ package com.thoughtworks.tdd;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ParkingLot {
+public class ParkingLot implements Parkable {
 
     private final int capacity;
     private Map<ParkingTicket, Car> cars = new HashMap<ParkingTicket, Car>();
@@ -14,8 +14,7 @@ public class ParkingLot {
             this.cars.put(ticket, car);
             return ticket;
         } else {
-            System.out.print("Not enough position.\n");
-            return null;
+            throw new NotEnoughPositionException();
         }
 
     }

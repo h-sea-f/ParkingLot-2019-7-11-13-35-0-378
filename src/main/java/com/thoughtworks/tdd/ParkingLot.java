@@ -21,17 +21,14 @@ public class ParkingLot {
     }
 
     public Car takeCar(ParkingTicket ticket) {
-        if (cars.containsKey(ticket)) {
-            return ticket.getCar();
-        } else {
-            System.out.print("Unrecognized parking ticket.\n");
-            return null;
+        if (ticket == null) {
+            throw new PleaseProvideYourParkingTicketException();
         }
-    }
-
-    public Car takeCar(){
-        System.out.print("Please provide your parking ticket.\n");
-        return null;
+        if (cars.containsKey(ticket)) {
+            return cars.remove(ticket);
+        } else {
+            throw new UnrecognizedParkingTicketException();
+        }
     }
 
     public ParkingLot(int capacity) {

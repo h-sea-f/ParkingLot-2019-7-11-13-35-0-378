@@ -4,6 +4,11 @@ import java.util.List;
 
 public class SmartParkingBoy extends ParkingBoy {
     @Override
+    public ParkingTicket parkCar(Car car) {
+        return null;
+    }
+
+    @Override
     public ParkingTicket parkingBoyParkCar(Car car, List<ParkingLot> parkingLotList) {
         ParkingLot vancanestParkingLot = parkingLotList.get(0);
         for (ParkingLot prakingLot : parkingLotList) {

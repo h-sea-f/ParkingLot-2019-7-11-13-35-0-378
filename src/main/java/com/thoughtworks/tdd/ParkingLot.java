@@ -6,10 +6,10 @@ import java.util.Map;
 public class ParkingLot implements Parkable {
 
     private final int capacity;
-    private Map<ParkingTicket, Car> cars = new HashMap<ParkingTicket, Car>();
+    private Map<ParkingTicket, Car> cars = new HashMap<>();
 
     public ParkingTicket parkCar(Car car) {
-        if (this.cars.size() < this.capacity) {
+        if (!isFull()) {
             ParkingTicket ticket = new ParkingTicket(car);
             this.cars.put(ticket, car);
             return ticket;
@@ -27,6 +27,14 @@ public class ParkingLot implements Parkable {
             return cars.remove(ticket);
         } else {
             throw new UnrecognizedParkingTicketException();
+        }
+    }
+
+    public boolean isFull() {
+        if (this.cars.size() < this.capacity) {
+            return false;
+        } else {
+            return true;
         }
     }
 

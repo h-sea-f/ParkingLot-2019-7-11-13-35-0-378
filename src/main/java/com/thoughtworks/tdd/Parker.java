@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Parker implements Parkable {
-    private List<ParkingLot> parkingLots = new ArrayList<>();
+    protected List<ParkingLot> parkingLots = new ArrayList<>();
 
     public Car takeCar(ParkingTicket parkingTicket) {
         if (parkingTicket == null) {

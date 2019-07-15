@@ -1,7 +1,16 @@
 package com.thoughtworks.tdd;
 
-import java.util.List;
+public class SuperSmartParkingBoy extends Parker {
 
-public class SuperSmartParkingBoy extends ParkingBoy {
-
+    @Override
+    public ParkingTicket parkCar(Car car) {
+        ParkingLot lowestUtilizationParkingLot = parkingLots.get(0);
+        for (ParkingLot parkingLot : parkingLots) {
+            boolean isLowestUtilizationParkingLot =  parkingLot.getUtilizationRate() < lowestUtilizationParkingLot.getUtilizationRate();
+            if (isLowestUtilizationParkingLot) {
+                lowestUtilizationParkingLot = parkingLot;
+            }
+        }
+        return lowestUtilizationParkingLot.parkCar(car);
+    }
 }

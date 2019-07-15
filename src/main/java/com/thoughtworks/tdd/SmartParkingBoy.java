@@ -1,18 +1,15 @@
 package com.thoughtworks.tdd;
 
-import java.util.List;
+import java.util.Comparator;
+import java.util.stream.Collectors;
 
-public class SmartParkingBoy extends ParkingBoy {
+public class SmartParkingBoy extends Parker {
+
     @Override
     public ParkingTicket parkCar(Car car) {
-        return null;
-    }
-
-    @Override
-    public ParkingTicket parkingBoyParkCar(Car car, List<ParkingLot> parkingLotList) {
-        ParkingLot vancanestParkingLot = parkingLotList.get(0);
-        for (ParkingLot prakingLot : parkingLotList) {
-            boolean isVancanestParkingLot = (prakingLot.getCapacity() - prakingLot.getCars().size()) > (vancanestParkingLot.getCapacity() - vancanestParkingLot.getCars().size());
+        ParkingLot vancanestParkingLot = parkingLots.get(0);
+        for (ParkingLot prakingLot : parkingLots) {
+            boolean isVancanestParkingLot = prakingLot.getRemainder() > vancanestParkingLot.getRemainder();
             if (isVancanestParkingLot) {
                 vancanestParkingLot = prakingLot;
             }

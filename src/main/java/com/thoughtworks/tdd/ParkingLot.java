@@ -38,6 +38,10 @@ public class ParkingLot implements Parkable {
         }
     }
 
+    public int getRemainder(){
+        return this.capacity-this.getCars().size();
+    }
+
     public ParkingLot(int capacity) {
         this.capacity = capacity;
     }

@@ -3,69 +3,37 @@ package com.thoughtworks.tdd;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LotServiceManager extends SillyParkingBoy {
-    private List<ParkingLot> parkingLotList;
-    private List<ParkingBoy> parkingBoyList = new ArrayList<>();
+public class LotServiceManager {
+    //    private List<ParkingLot> parkingLotList;
+//    private List<ParkingBoy> parkingBoyList = new ArrayList<>();
+    private List<Parkable> parkables = new ArrayList<>();
 
-    public void addParkingBoy(ParkingBoy parkingBoy) {
-        this.parkingBoyList.add(parkingBoy);
+    public void addParkable(Parkable parkable) {
+        this.parkables.add(parkable);
     }
 
-    public ParkingTicket targetParkingBoyParkCar(Car car) {
-        if (this.parkingBoyList.size() > 0) {
-            int randomNumber = (int) (Math.random() * (parkingBoyList.size()));
-            return parkingBoyList.get(randomNumber).parkingBoyParkCar(car, this.parkingLotList);
-        } else {
-            System.out.print("Don't have any parking boy.\n");
-            return null;
+    public ParkingTicket parkCar(Car car) {
+        for (Parkable parkable : parkables
+                ) {
+            if (!parkable.isFull()) {
+                parkable.parkCar(car);
+            }
         }
+        throw new NotEnoughPositionException();
     }
 
-    public Car targetParkingBoyTakeCar(ParkingTicket parkingTicket) {
-        if (this.parkingBoyList.size() > 0) {
-            int randomNumber = (int) (Math.random() * (parkingBoyList.size()));
-            for (ParkingLot parkingLot : this.parkingLotList
+    public Car takeCar(ParkingTicket parkingTicket) {
+        if (parkingTicket == null) {
+            throw new PleaseProvideYourParkingTicketException();
+        } else {
+            for (Parkable parkable : parkables
                     ) {
-                if (parkingLot.takeCar(parkingTicket) != null) {
-                    return parkingBoyList.get(randomNumber).parkingBoyTakeCar(parkingTicket, parkingLot);
+                if (parkable.isContainCorrespondCar(parkingTicket)) {
+                    return parkable.takeCar(parkingTicket);
                 }
             }
-            System.out.print("Unrecognized parking ticket.\n");
-            return null;
-        } else {
-            System.out.print("Don't have any parking boy.\n");
-            return null;
+            throw new UnrecognizedParkingTicketException();
         }
     }
 
-    public Car managerTakeCar(ParkingTicket parkingTicket) {
-        for (ParkingLot parkingLot : this.parkingLotList
-                ) {
-            if (parkingLot.takeCar(parkingTicket) != null) {
-                return parkingLot.takeCar(parkingTicket);
-            }
-        }
-        System.out.print("Unrecognized parking ticket.\n");
-        return null;
-    }
-
-    public ParkingTicket managerParkCar(Car car) {
-        return this.parkingBoyParkCar(car, this.parkingLotList);
-    }
-
-    public LotServiceManager(List<ParkingLot> parkingLotList) {
-        this.parkingLotList = parkingLotList;
-    }
-
-    public List<ParkingLot> getParkingLotList() {
-        return parkingLotList;
-    }
-
-    public List<ParkingBoy> getParkingBoyList() {
-        return parkingBoyList;
-    }
-
-    public void setParkingLotList(List<ParkingLot> parkingLotList) {
-        this.parkingLotList = parkingLotList;
-    }
 }

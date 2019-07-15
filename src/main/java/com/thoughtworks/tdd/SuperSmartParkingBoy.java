@@ -6,7 +6,7 @@ public class SuperSmartParkingBoy extends Parker {
     public ParkingTicket parkCar(Car car) {
         ParkingLot lowestUtilizationParkingLot = parkingLots.get(0);
         for (ParkingLot parkingLot : parkingLots) {
-            boolean isLowestUtilizationParkingLot =  parkingLot.getUtilizationRate() < lowestUtilizationParkingLot.getUtilizationRate();
+            boolean isLowestUtilizationParkingLot = parkingLot.getUtilizationRate() < lowestUtilizationParkingLot.getUtilizationRate();
             if (isLowestUtilizationParkingLot) {
                 lowestUtilizationParkingLot = parkingLot;
             }

@@ -38,6 +38,15 @@ public class ParkingLot implements Parkable {
         }
     }
 
+    @Override
+    public boolean isContainCorrespondCar(ParkingTicket parkingTicket) {
+        if(cars.containsKey(parkingTicket)){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public int getRemainder() {
         return this.capacity - this.getCars().size();
     }

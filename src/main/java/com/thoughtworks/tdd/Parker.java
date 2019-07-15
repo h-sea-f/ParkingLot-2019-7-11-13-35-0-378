@@ -18,4 +18,25 @@ public abstract class Parker implements Parkable {
         }
         throw new UnrecognizedParkingTicketException();
     }
+
+    public boolean isFull() {
+        for (ParkingLot parkingLot : parkingLots
+                ) {
+            if (!parkingLot.isFull()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public boolean isContainCorrespondCar(ParkingTicket parkingTicket) {
+        for (ParkingLot parkingLot : parkingLots
+                ) {
+            if (parkingLot.getCars().containsKey(parkingTicket)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

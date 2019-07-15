@@ -39,4 +39,8 @@ public abstract class Parker implements Parkable {
         }
         return false;
     }
+
+    public void addParkingLot(ParkingLot parkingLot){
+        this.parkingLots.add(parkingLot);
+    }
 }

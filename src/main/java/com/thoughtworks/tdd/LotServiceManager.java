@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LotServiceManager {
-    //    private List<ParkingLot> parkingLotList;
-//    private List<ParkingBoy> parkingBoyList = new ArrayList<>();
     private List<Parkable> parkables = new ArrayList<>();
 
     public void addParkable(Parkable parkable) {

@@ -98,7 +98,7 @@ public class ParkingLotTest {
         parkingBoy.parkCar(car);
         ParkingTicket parkingTicket = parkingBoy.parkCar(car1);
         //then
-        Assertions.assertEquals(parkingLot1.takeCar(parkingTicket), car1);
+        Assertions.assertEquals(parkingLot2.takeCar(parkingTicket), car1);
     }
 
     @Test

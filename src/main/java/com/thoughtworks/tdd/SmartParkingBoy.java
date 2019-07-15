@@ -1,8 +1,5 @@
 package com.thoughtworks.tdd;
 
-import java.util.Comparator;
-import java.util.stream.Collectors;
-
 public class SmartParkingBoy extends Parker {
 
     @Override

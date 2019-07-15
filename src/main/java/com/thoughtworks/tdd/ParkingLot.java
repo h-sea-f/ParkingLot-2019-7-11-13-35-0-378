@@ -52,7 +52,7 @@ public class ParkingLot implements Parkable {
     }
 
     public double getUtilizationRate() {
-        return this.getCars().size() / this.getCapacity();
+        return (double)this.getCars().size() / (double)this.getCapacity();
     }
 
     public ParkingLot(int capacity) {

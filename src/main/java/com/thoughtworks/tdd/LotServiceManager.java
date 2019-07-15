@@ -14,7 +14,7 @@ public class LotServiceManager {
         for (Parkable parkable : parkables
                 ) {
             if (!parkable.isFull()) {
-                parkable.parkCar(car);
+                return parkable.parkCar(car);
             }
         }
         throw new NotEnoughPositionException();

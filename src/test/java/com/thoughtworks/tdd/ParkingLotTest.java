@@ -93,11 +93,56 @@ public class ParkingLotTest {
         Parker parkingBoy = new SuperSmartParkingBoy();
         parkingBoy.addParkingLot(parkingLot1);
         parkingBoy.addParkingLot(parkingLot2);
-        Car car1=new Car(222);
+        Car car1 = new Car(222);
         //when
-         parkingBoy.parkCar(car);
-         ParkingTicket parkingTicket=parkingBoy.parkCar(car1);
+        parkingBoy.parkCar(car);
+        ParkingTicket parkingTicket = parkingBoy.parkCar(car1);
         //then
-        Assertions.assertEquals(parkingLot1.takeCar(parkingTicket),car1);
+        Assertions.assertEquals(parkingLot1.takeCar(parkingTicket), car1);
+    }
+
+    @Test
+    public void should_return_parkingLotTicket_when_LotServiceManager_give_a_car() {
+        //given
+        ParkingLot parkingLot1 = new ParkingLot(2);
+        Car car = new Car(123);
+        Parker parkingBoy = new SuperSmartParkingBoy();
+        parkingBoy.addParkingLot(parkingLot1);
+        LotServiceManager lotServiceManager = new LotServiceManager();
+        lotServiceManager.addParkable(parkingBoy);
+        //when
+        ParkingTicket parkingTicket = lotServiceManager.parkCar(car);
+        //then
+        Assertions.assertEquals(parkingTicket.getCar(), car);
+    }
+
+    @Test
+    public void should_throw_NotEnoughPositionException_when_LotServiceManager_give_a_car_and_parkables_all_full() {
+        //given
+        ParkingLot parkingLot1 = new ParkingLot(0);
+        Car car = new Car(123);
+        Parker parkingBoy = new SuperSmartParkingBoy();
+        parkingBoy.addParkingLot(parkingLot1);
+        LotServiceManager lotServiceManager = new LotServiceManager();
+        lotServiceManager.addParkable(parkingBoy);
+        //when
+        //then
+        Assertions.assertThrows(NotEnoughPositionException.class, () -> lotServiceManager.parkCar(car));
+    }
+
+    @Test
+    public void should_throw_UnrecognizedParkingTicketException_when_LotServiceManager_give_a_error_ticket() {
+        //given
+        ParkingLot parkingLot1 = new ParkingLot(1);
+        Car car = new Car(123);
+        Parker parkingBoy = new SuperSmartParkingBoy();
+        parkingBoy.addParkingLot(parkingLot1);
+        LotServiceManager lotServiceManager = new LotServiceManager();
+        lotServiceManager.addParkable(parkingBoy);
+        lotServiceManager.parkCar(car);
+        ParkingTicket ticket=new ParkingTicket();
+        //when
+        //then
+        Assertions.assertThrows(UnrecognizedParkingTicketException.class, () -> lotServiceManager.takeCar(ticket));
     }
 }
